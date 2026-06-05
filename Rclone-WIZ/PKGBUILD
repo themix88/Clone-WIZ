@@ -35,4 +35,7 @@ package() {
     # 3. FIX: Install the icon to a standard directory
     # The system looks for 'rclone-wiz' here by default
     install -Dm644 "$srcdir/rclone-wiz.svg" "$pkgdir/usr/share/pixmaps/rclone-wiz.svg"
+
+    # 4. Copy license file GPL3 from the source directory to the package
+    install -Dm644 "$srcdir/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
