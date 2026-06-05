@@ -3,6 +3,8 @@
 
 **Rclone-WIZ is an independent project and is not affiliated with, endorsed by, or sponsored by the Rclone team.**
 
+**USE MASTER BRANCH FOR THE MOST UP TO DATE VERSION**
+
 
 A easy to use GUI for configuring and mounting cloud drives using rclone. 
 
