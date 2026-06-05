@@ -186,7 +186,7 @@ class RcloneKdeApp(QMainWindow):
             "A tool to configure, script, and mount cloud drives using rclone."
             "\n\nCreated by Miran Kljun\n2026\ngithub.com/themix88/" \
             "\n\n"
-            "\n\nSpecial thanks goes to rclone developers & community for their amazing work!\nhttps://rclone.org/authors/\nhttps://rclone.org/")
+            "\n\nSpecial thanks goes to rclone developers & community for their amazing work!\nhttps://rclone.org/authors/\nhttps://rclone.org/\nhttps://github.com/rclone/rclone")
 
     def _show_tutorial(self):
         """Displays a formatted HTML dialog guiding the user through GDrive setup."""
