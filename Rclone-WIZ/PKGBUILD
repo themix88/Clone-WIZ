@@ -1,8 +1,8 @@
 # Maintainer: Miran Kljun <miran.kljun@gmail.com>
 pkgname=rclone-wiz
-pkgver=1.0.0
+pkgver=1.1
 pkgrel=1
-pkgdesc="A PyQt6 GUI tool to configure, script, and mount cloud drives using rclone."
+pkgdesc="A simple and easy to use tool to configure, script, and mount cloud drives using rclone"
 arch=('any')
 url="https://github.com/themix88/Clone-WIZ/Rclone-WIZ"
 license=('GPL3')
