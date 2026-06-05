@@ -1,22 +1,19 @@
-# Maintainer: Miran Kljun <miran.kljun@gmail.com
+# Maintainer: Miran Kljun <miran.kljun@gmail.com>
 pkgname=rclone-wiz
 pkgver=1.0.0
 pkgrel=1
 pkgdesc="A PyQt6 GUI tool to configure, script, and mount cloud drives using rclone."
 arch=('any')
-url="https://github.com/themix88/clone-wiz/Rclone-WIZ" # Update if you host it
+url="https://github.com/themix88/Clone-WIZ"
 license=('GPL3')
 
-# --- THE IMPORTANT PART ---
-# Pacman will install them automatically.
 depends=(
     'python'
     'python-pyqt6'
     'rclone'
-    'fuse2' # Required for the fusermount command
+    'fuse3' 
 )
 
-# These are optional. pacman will notify the user they exist, but won't force-install them.
 optdepends=(
     'konsole: Supported terminal for rclone config'
     'alacritty: Supported terminal for rclone config'
@@ -24,11 +21,14 @@ optdepends=(
     'xterm: Supported terminal for rclone config'
 )
 
-# Tells makepkg to look for this file in the same directory
-source=("rclone-wiz.py")
-sha256sums=('SKIP') # Use 'SKIP' for local builds, or generate a real hash if publishing
+# We include the .desktop file in the source array so makepkg finds it
+source=("rclone-wiz.py" "rclone-wiz.desktop")
+sha256sums=('SKIP' 'SKIP')
 
 package() {
-    # This installs your python script into /usr/bin so it can be run from anywhere
+    # 1. Install the executable
     install -Dm755 "$srcdir/rclone-wiz.py" "$pkgdir/usr/bin/rclone-wiz"
+    
+    # 2. Install the desktop file so it appears in application menus
+    install -Dm644 "$srcdir/rclone-wiz.desktop" "$pkgdir/usr/share/applications/rclone-wiz.desktop"
 }
