@@ -22,14 +22,15 @@ A easy to use GUI for configuring and mounting cloud drives using rclone.
 ## RUN
 1. Clone the repository: `git clone https://github.com/themix88/Clone-WIZ`
 2. Navigate to the directory: `cd Clone-WIZ/Rclone-WIZ`
-3. Run the application: `python3 rclone_kde.py`
+3. Run the application: `python3 rclone-wiz.py`
 
 ## OR INSTALL (Manually)
 
 1. Clone the repository: `git clone https://github.com/themix88/Clone-WIZ`
 2. makepkg -si
+3. Run from application launcher
 
-**OR INSTALL with any (AUR) helper or package manager like Shelly or yay.**
+## **OR INSTALL with any (AUR) helper or package manager like Shelly or yay.**
 
 
 # **License**
