@@ -27,3 +27,5 @@ A GUI for configuring and mounting rclone cloud drives.
 
 # **License**
 This project is licensed under the GNU General Public License v3.0 (GPLv3).
+
+See LICENSE file
