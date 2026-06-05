@@ -86,7 +86,7 @@ class RcloneKdeApp(QMainWindow):
         help_menu = menubar.addMenu("Help")
         
         # New Tutorial Action
-        tutorial_action = QAction("Tutorial: Add Google Drive", self)
+        tutorial_action = QAction("EXAMPLE Tutorial: Add Google Drive", self)
         tutorial_action.triggered.connect(self._show_tutorial)
         help_menu.addAction(tutorial_action)
         
@@ -182,12 +182,46 @@ class RcloneKdeApp(QMainWindow):
         main_layout.addLayout(lay_actions)
 
     def _show_about(self):
-        QMessageBox.information(self, "About", 
-            "Rclone-WIZ 1.1\n\n"
-            "A tool to configure, script, and mount cloud drives using rclone."
-            "\n\nCreated by Miran Kljun\n2026\ngithub.com/themix88/" \
-            "\n\n"
-            "\n\nSpecial thanks goes to rclone developers & community for their amazing work!\nhttps://rclone.org/authors/\nhttps://rclone.org/\nhttps://github.com/rclone/rclone")
+        # Create a Dialog instead of a MessageBox for better HTML support
+        dialog = QDialog(self)
+        dialog.setWindowTitle("About Rclone-WIZ")
+        dialog.resize(400, 350)
+        
+        layout = QVBoxLayout(dialog)
+        
+        text_browser = QTextBrowser()
+        text_browser.setOpenExternalLinks(True) # Required to make the links work
+        
+        # This is your HTML content
+        about_html = """
+        <div style="font-family: sans-serif;">
+            <h2 style="color: #3daee9;">Rclone-WIZ 1.1</h2>
+            <p>A simple and easy-to-use tool to configure, script, and mount cloud drives using rclone.</p>
+            <hr>
+            <p><b>Created by:</b> Miran Kljun<br>
+            2026(c)<br>
+            <a href="https://github.com/themix88/">github.com/themix88/</a></p>
+            <hr>
+            Source: <li><a href="https://github.com/themix88/Clone-WIZ/Rclone-WIZ">GitHub</a></li>
+            <hr>
+            <p>Special thanks goes to the rclone developers & community for their amazing work!</p>
+            <ul>
+                <li><a href="https://rclone.org">rclone.org</a></li>
+                <li><a href="https://rclone.org/authors">Authors</a></li>
+                <li><a href="https://github.com/rclone/rclone">GitHub</a></li>
+            </ul>
+        </div>
+        """
+        
+        text_browser.setHtml(about_html)
+        layout.addWidget(text_browser)
+        
+        # Add a "Close" button
+        btn_close = QPushButton("Close")
+        btn_close.clicked.connect(dialog.accept)
+        layout.addWidget(btn_close)
+        
+        dialog.exec()
 
     def _show_tutorial(self):
         """Displays a formatted HTML dialog guiding the user through GDrive setup."""
