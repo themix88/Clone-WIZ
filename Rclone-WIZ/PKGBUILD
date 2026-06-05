@@ -26,12 +26,13 @@ source=("rclone-wiz.py" "rclone-wiz.desktop" "rclone-wiz.svg")
 sha256sums=('SKIP' 'SKIP' 'SKIP')
 
 package() {
-    # 1. Install the executable
+# 1. Install the executable
     install -Dm755 "$srcdir/rclone-wiz.py" "$pkgdir/usr/bin/rclone-wiz"
     
-    # 2. Install the desktop file so it appears in application menus
+    # 2. Install the desktop file
     install -Dm644 "$srcdir/rclone-wiz.desktop" "$pkgdir/usr/share/applications/rclone-wiz.desktop"
-    
-    # 3. Install the SVG icon
-    install -Dm644 "$srcdir/rclone-wiz.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/rclone-wiz.svg"
+
+    # 3. FIX: Install the icon to a standard directory
+    # The system looks for 'rclone-wiz' here by default
+    install -Dm644 "$srcdir/rclone-wiz.svg" "$pkgdir/usr/share/pixmaps/rclone-wiz.svg"
 }
