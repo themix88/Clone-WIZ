@@ -22,7 +22,7 @@ optdepends=(
 )
 
 # We include the .desktop file in the source array so makepkg finds it
-source=("rclone-wiz.py" "rclone-wiz.desktop" "rclone-wiz.svg")
+source=("rclone-wiz.py" "rclone-wiz.desktop" "rclone-wiz.png")
 sha256sums=('SKIP' 'SKIP' 'SKIP')
 
 package() {
@@ -32,6 +32,6 @@ package() {
     # 2. Install the desktop file so it appears in application menus
     install -Dm644 "$srcdir/rclone-wiz.desktop" "$pkgdir/usr/share/applications/rclone-wiz.desktop"
     
-    # 3. Install the SVG icon
-    install -Dm644 "$srcdir/rclone-wiz.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/rclone-wiz.svg"
+    # 3. Install the PNG icon
+    install -Dm644 "$srcdir/rclone-wiz.png" "$pkgdir/usr/share/icons/hicolor/scalable/apps/rclone-wiz.png"
 }
