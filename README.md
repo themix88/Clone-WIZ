@@ -23,3 +23,7 @@ A GUI for configuring and mounting rclone cloud drives.
 
 1. Clone the repository: `git clone https://github.com/themix88/Clone-WIZ`
 2. makepkg -si
+
+
+# **License**
+This project is licensed under the GNU General Public License v3.0 (GPLv3).
