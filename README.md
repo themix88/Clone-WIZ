@@ -1,6 +1,8 @@
 # **Rclone-WIZ**
 # Version: 1.1
 
+**Rclone-WIZ is an independent project and is not affiliated with, endorsed by, or sponsored by the Rclone team.**
+
 A GUI for configuring and mounting rclone cloud drives. 
 
 ## Features
