@@ -199,7 +199,7 @@ class RcloneKdeApp(QMainWindow):
             <p>A simple and easy-to-use tool to configure, script, and mount cloud drives using rclone.</p>
             <hr>
             <p><b>Created by:</b> Miran Kljun<br>
-            2026(c)<br>
+            2026	&copy; - GPL 3.0<br>
             <a href="https://github.com/themix88/">github.com/themix88/</a></p>
             <hr>
             Source: <li><a href="https://github.com/themix88/Clone-WIZ/Rclone-WIZ">GitHub</a></li>
