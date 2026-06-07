@@ -1,5 +1,5 @@
 # **Rclone-WIZ**
-# Version: 1.1
+# Version: 1.3
 
 **Rclone-WIZ is an independent project and is not affiliated with, endorsed by, or sponsored by the Rclone team.**
 
