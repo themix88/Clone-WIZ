@@ -1295,6 +1295,8 @@ class RcloneKdeApp(QMainWindow):
                 "--vfs-fast-fingerprint \\\n"
                 "--timeout 1h \\\n"
                 "--attr-timeout 1h \\\n"
+                "--no-modtime \\\n"
+                "--transfers 4 \\\n"
                 "--tpslimit 10 \\\n"
                 "--tpslimit-burst 10 \\\n"
                 "--daemon"

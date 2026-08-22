@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.4-14] - 2026-08-22
+### Packaging
+- **Source-only build:** Package now builds entirely from source — no AUR dependencies required.
+- **rclone built from git:** `rclone` (v1.75.0) is fetched from its official GitHub repository and compiled during the build step using Go. It is no longer a runtime dependency pulled from AUR or official repos.
+- **All sources from GitHub:** App sources (`rclone-wiz.py`, `.desktop`, `.svg`, `LICENSE`, `VERSION`, `README.md`) are fetched directly from the tagged GitHub release instead of local files.
+- **makedepends added:** `go` and `git` are now declared as build-time dependencies.
+- **Architecture:** Changed from `any` to explicit architectures (`x86_64`, `aarch64`, `armv7h`) since the package now bundles a compiled binary.
+
+### Fixed
+- **Thumbnail-induced slowdowns:** Generated mount scripts now include `--no-modtime` and `--transfers 4` flags.
+  - `--no-modtime` prevents rclone from fetching modification times on every file, eliminating the expensive per-file API calls that file managers trigger when scanning for thumbnails.
+  - `--transfers 4` caps concurrent transfer threads, preventing thumbnail generators from saturating the API connection and causing hangs or rate-limit bans.
+
 ## [1.7.4] - 2026-07-13
 ### Major
 - **Cleanup** and rewrites of code for better maintainability and future feature additions.

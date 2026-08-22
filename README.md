@@ -19,53 +19,47 @@ Rclone-WIZ provides the following key features to streamline your cloud storage 
 *   **Autostart Configuration:** Easily add your mounted drives to system autostart with a single button click.
 
 ## Prerequisites
-Before running Rclone-WIZ, ensure you have the following dependencies installed on your system:
+Before running Rclone-WIZ, ensure you have the following installed on your system:
 
-*   `rclone`: The command-line program for managing cloud storage.
 *   `fuse3`: Filesystem in Userspace (FUSE) library, required for mounting.
 *   `python-pyqt6`: Python bindings for the Qt 6 application framework.
 
+> **Note:** `rclone` is **bundled and built from source** as part of the package — you do not need to install it separately.
+
 ## Installation
 
-### Quick Start (from source)
-To run Rclone-WIZ directly from the source code:
+### Quick Start (run directly from source)
+To run Rclone-WIZ directly without installing:
 
 1.  **Clone the repository:**
     ```bash
     git clone https://github.com/themix88/Clone-WIZ.git
+    cd Clone-WIZ
     ```
-2.  **Navigate to the application directory:**
+2.  **Install `rclone` separately** (needed only for this method):
     ```bash
-    cd Clone-WIZ/Rclone-WIZ
+    sudo pacman -S rclone
     ```
 3.  **Run the application:**
     ```bash
     python3 rclone-wiz.py
     ```
 
-### Manual Installation (Arch Linux / AUR)
-For Arch Linux users, you can manually build and install the package:
+### Build and Install from Source (Arch Linux)
+This method fetches and compiles everything from source — no AUR required.
+
+**Build-time dependencies:** `go`, `git`, `base-devel`
 
 1.  **Clone the repository:**
     ```bash
     git clone https://github.com/themix88/Clone-WIZ.git
+    cd Clone-WIZ
     ```
-2.  **Navigate to the application directory:**
-    ```bash
-    cd Clone-WIZ/Rclone-WIZ
-    ```
-3.  **Build and install the package:**
+2.  **Build and install:**
     ```bash
     makepkg -si
     ```
-
-### Recommended Installation (AUR Helper)
-If you use an AUR helper like `yay` or `paru`, you can install Rclone-WIZ with a single command:
-
-```bash
-yay -S rclone-wiz # Or paru -S rclone-wiz
-```
-*(Note: The package name might vary slightly on the AUR. Please check the AUR for the exact package name.)*
+    `makepkg` will automatically fetch `rclone` from its GitHub repository, compile it with Go, and bundle it into the package alongside Rclone-WIZ.
 
 ## Usage
 Using Rclone-WIZ is straightforward:
@@ -85,14 +79,20 @@ This project is licensed under the GNU General Public License v3.0 (GPLv3).
 
 ---
 
-## Important NOTE (a.k.a. Troubleshooting a.k.a. I don't know how to fix😅... YET😎):
+## Troubleshooting: File Manager Thumbnails & Slow Mounts
 
-When building the 1.7 version of rclone-wiz, I noticed that aggressive file managers can easily cause FUSE mounts to hang. Because the mount often appears to the system as a standard local drive, your file manager might try to fetch the first few megabytes of every media file simultaneously just to generate preview thumbnails. This will quickly exhaust your RAM or trigger temporary API rate-limiting bans from your cloud provider.
+> **As of v1.7.4-14, the generated mount script now includes `--no-modtime` and `--transfers 4` flags which significantly reduce the impact of this issue.** If you're still experiencing slowdowns, follow the additional steps below.
 
-To keep the mount running smoothly, you need to restrict thumbnail generation. 
+When a cloud drive is mounted via FUSE, aggressive file managers may treat it like a local disk and try to generate thumbnails for every media file simultaneously. This triggers a flood of per-file metadata and read requests, which can exhaust your RAM or cause temporary API rate-limit bans from your cloud provider.
 
-Here is how to handle it across different desktop environments:
-#
+The mount script mitigates this with:
+- **`--no-modtime`** — skips fetching modification times per file, eliminating the most expensive per-file API call that thumbnail scanners trigger.
+- **`--transfers 4`** — caps the number of concurrent download threads so thumbnail generators can't saturate the connection.
+
+For an extra layer of protection, you can also restrict thumbnail generation in your file manager:
+
+### Per Desktop Environment
+
 ### 1. Standalone Window Managers (Hyprland, Sway, i3)
 
 First check if you're using "tumbler"
