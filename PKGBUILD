@@ -45,7 +45,9 @@ sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
     cd "$srcdir/rclone"
-    export GOPATH="$srcdir/gopath"
+    # Use the system Go module cache so dependencies are only downloaded once.
+    # Modules are verified against go.sum on first fetch and reused on subsequent builds.
+    export GOMODCACHE="${GOMODCACHE:-$HOME/go/pkg/mod}"
     export CGO_ENABLED=0
     go build -trimpath \
         -ldflags "-s -w -X github.com/rclone/rclone/fs.Version=v${_rclone_ver}" \
